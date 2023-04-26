@@ -51,6 +51,11 @@
     justify-content: center;
     align-items: center;
 }
+.text-bg {
+  background: url('img/logo.jpg') no-repeat center center fixed;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 .link-to-book-wrapper {
     flex: 1;
