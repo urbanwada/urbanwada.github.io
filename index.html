@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Urban वाडा</title>
+  <title>Page Title</title>
   <style>
     /* Set the image to cover the entire screen */
     body {
@@ -17,24 +17,27 @@
     img {
       height: 100%;
       width: 100%;
-      object-fit: cover;
+      object-fit: fill;
     }
   </style>
-</head>
-<body>
-  <img id="image" src="img\wada-new.jpg" alt="Example Image">
   <script>
-    // Get a reference to the image element
-    const image = document.getElementById('image');
+    // Set the time to wait before redirecting
+    const delay = 2000; // 2 seconds
 
-    // Add a click event listener to the image
-    image.addEventListener('click', function() {
-      // Remove the image from the DOM
-      image.parentNode.removeChild(image);
+    // Wait for the DOM to finish loading
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get a reference to the image element
+      const image = document.getElementById('image');
 
-      // Redirect to the index.html page
-      window.location.href = 'main.html';
+      // Wait for the specified delay
+      setTimeout(function() {
+        // Redirect to the index.html page
+        window.location.href = 'main.html';
+      }, delay);
     });
   </script>
+</head>
+<body>
+  <img id="image" src="wada-main.jpg" alt="Example Image">
 </body>
 </html>
