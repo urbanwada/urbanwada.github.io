@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Page Title</title>
+  <style>
+    /* Set the image to cover the entire screen */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <img id="image" src="img/wada-main.jpg" alt="Example Image">
+  <script>
+    // Get a reference to the image element
+    const image = document.getElementById('image');
+
+    // Add a click event listener to the image
+    image.addEventListener('click', function() {
+      // Remove the image from the DOM
+      image.parentNode.removeChild(image);
+
+      // Redirect to the index.html page
+      window.location.href = 'main.html';
+    });
+  </script>
+</body>
+</html>
