@@ -103,38 +103,7 @@
   	var endX;
   	var threshold = 50; // minimum distance to trigger a swipe
   
-      
-      function showSlide(n) {
-        var slides = document.getElementsByClassName("carousel-slide");
-        
-        if (n > slides.length) {
-          slideIndex = 1;
-        }
-        
-        if (n < 1) {
-          slideIndex = slides.length;
-        }
-        
-        for (var i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
-        }
-        
-        slides[slideIndex - 1].style.display = "block";
-      }
-      
-      function prevSlide() {
-        showSlide(slideIndex -= 1);
-      }
-      
-      function nextSlide() {
-        showSlide(slideIndex += 1);
-      }
-      
-//       setInterval(function() {
-//         nextSlide();
-//       }, 5000);
-	    
-//function for swipe 
+      //function for swipe 
 	    
   function showSlide(n) {
     var slides = document.getElementsByClassName("carousel-slide");
@@ -188,7 +157,39 @@
   // add touch event listeners to the carousel container
   var carouselContainer = document.getElementsByClassName("carousel-container")[0];
   carouselContainer.addEventListener("touchstart", touchStart);
-  carouselContainer.addEventListener("touchend", touchEnd);	    
+  carouselContainer.addEventListener("touchend", touchEnd);
+// // function for arrow 	    
+//       function showSlide(n) {
+//         var slides = document.getElementsByClassName("carousel-slide");
+        
+//         if (n > slides.length) {
+//           slideIndex = 1;
+//         }
+        
+//         if (n < 1) {
+//           slideIndex = slides.length;
+//         }
+        
+//         for (var i = 0; i < slides.length; i++) {
+//           slides[i].style.display = "none";
+//         }
+        
+//         slides[slideIndex - 1].style.display = "block";
+//       }
+      
+//       function prevSlide() {
+//         showSlide(slideIndex -= 1);
+//       }
+      
+//       function nextSlide() {
+//         showSlide(slideIndex += 1);
+//       }
+      
+//       setInterval(function() {
+//         nextSlide();
+//       }, 5000);
+	    
+	    
     </script>
   </body>
 </html>
