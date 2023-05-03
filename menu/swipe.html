@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Urban Wada Menu</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .carousel {
+        position: relative;
+      }
+
+      .carousel-items {
+        display: flex;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+      }
+
+      .item {
+        flex: 0 0 100%;
+        scroll-snap-align: center;
+      }
+
+      .home-button {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .prev-button, .next-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        font-size: 24px;
+        line-height: 1;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .prev-button {
+        left: 10px;
+      }
+
+      .next-button {
+        right: 10px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="carousel">
+      <div class="carousel-items">
+        <div class="item"> <img class="carousel-slide" src="img/001-min.jpg"></div>
+        <div class="item"> <img class="carousel-slide" src="img/002-min.jpg"></div>
+        <div class="item"> <img class="carousel-slide" src="img/003-min.jpg"></div>
+        <div class="item"> <img class="carousel-slide" src="img/004-min.jpg"></div>
+	    <div class="item"> <img class="carousel-slide" src="img/005-min.jpg"></div>
+		<div class="item"> <img class="carousel-slide" src="img/006-min.jpg"></div>
+		<div class="item"> <img class="carousel-slide" src="img/007-min.jpg"></div>
+		<div class="item"> <img class="carousel-slide" src="img/008-min.jpg"></div>
+		<div class="item"> <img class="carousel-slide" src="img/009-min.jpg"></div>
+		<div class="item"> <img class="carousel-slide" src="img/010-min.jpg"></div>
+		<div class="item"> <img class="carousel-slide" src="img/011-min.jpg"></div>
+		<div class="item"> <img class="carousel-slide" src="img/012-min.jpg"></div>
+		<div class="item"> <img class="carousel-slide" src="img/013-min.jpg"></div>
+		<div class="item"> <img class="carousel-slide" src="img/014-min.jpg"></div>
+		<div class="item"> <img class="carousel-slide" src="img/016-min.jpg"></div>
+		<div class="item"> <img class="carousel-slide" src="img/015-min.jpg"></div>
+		<div class="item"> <img class="carousel-slide" src="img/017-min.jpg"></div>
+
+            </div>
+      <div class="home-button">Home</div>
+      <div class="prev-button">&larr;</div>
+      <div class="next-button">&rarr;</div>
+    </div>
+    <script>
+      $(document).ready(function() {
+        var carousel = $(".carousel-items");
+        var items = carousel.find(".item");
+        var currentIndex = 0;
+        var itemWidth = items.first().outerWidth();
+        var touchStartX = 0;
+
+        // Swipe left
+        function swipeLeft() {
+          if (currentIndex < items.length - 1) {
+            currentIndex++;
+            carousel.animate({ scrollLeft: currentIndex * itemWidth }, 500);
+          }
+        }
+
+        // Swipe right
+        function swipeRight() {
+          if (currentIndex > 0) {
+            currentIndex--;
+            carousel.animate({ scrollLeft: currentIndex * itemWidth }, 500);
+          }
+        }
+
+        // Touch events
+        carousel.on("touchstart", function(e) {
+          touchStartX = e.originalEvent.touches[0].pageX;
+        });
+
+        carousel.on("touchmove", function(e) {
+          var touchMoveX = e.originalEvent.touches[0].pageX;
+          var touchDiffX = touchStartX - touchMoveX;
+
+          if (touchDiffX > 0) {
+            swipeLeft();
+          } else {
+            swipeRight();
+          }
+
+          touchStartX = touchMoveX;
+        });
+
+        // Mouse events
+        carousel.on("mousedown", function(e) {
+          touchStartX = e.pageX;
