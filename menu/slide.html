@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Carousel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/css/bootstrap.min.css" integrity="sha512-AQJ84x+fMdnbJlGew/wvE2vhT+tT9A8CrW/hMBPtuCz45t81xr1NLVf8nmbD1yvI4d4kP7XnBcMawzq3F1S+Kw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      /* Style the carousel container */
+      .carousel-container {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+      }
+      
+      /* Style the carousel slides */
+      .carousel-slide {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+      }
+      
+      /* Show the first slide by default */
+      .carousel-slide:first-child {
+        display: block;
+      }
+      
+      /* Style the carousel controls */
+      .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        color: #fff;
+        cursor: pointer;
+        z-index: 1;
+      }
+      
+      .carousel-control.left {
+        left: 0;
+      }
+      
+      .carousel-control.right {
+        right: 0;
+      }
+	  
+	    /* Style the home button */
+  .home-button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .home-button:hover {
+    background-color: #000;
+    color: #fff;
+  }
+    </style>
+  </head>
+  <body>
+      <img class="carousel-slide" src="001-min.jpg">
+      <img class="carousel-slide" src="002-min.jpg">
+      <img class="carousel-slide" src="003-min.jpg">
+      <img class="carousel-slide" src="004-min.jpg">
+      <img class="carousel-slide" src="005-min.jpg">
+      <img class="carousel-slide" src="006-min.jpg">
+      <img class="carousel-slide" src="007-min.jpg">
+      <img class="carousel-slide" src="008-min.jpg">
+      <img class="carousel-slide" src="009-min.jpg">
+      <img class="carousel-slide" src="010-min.jpg">
+      <img class="carousel-slide" src="011-min.jpg">
+      <img class="carousel-slide" src="012-min.jpg">
+      <img class="carousel-slide" src="013-min.jpg">
+      <img class="carousel-slide" src="014-min.jpg">
+      <img class="carousel-slide" src="015-min.jpg">
+      <img class="carousel-slide" src="016-min.jpg">
+      <img class="carousel-slide" src="017-min.jpg">
+      
+      <!-- Add the carousel controls here -->
+	  
+      <div class="carousel-control left" onclick="prevSlide()">&#10094;</div>
+      <div class="carousel-control right" onclick="nextSlide()">&#10095;</div>
+    </div>
+	<button class="home-button" onclick="location.href='/main.html'">Home</button>
+
+    
+    <script>
+      var slideIndex = 1;
+      
+      function showSlide(n) {
+        var slides = document.getElementsByClassName("carousel-slide");
+        
+        if (n > slides.length) {
+          slideIndex = 1;
+        }
+        
+        if (n < 1) {
+          slideIndex = slides.length;
+        }
+        
+        for (var i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        
+        slides[slideIndex - 1].style.display = "block";
+      }
+      
+      function prevSlide() {
+        showSlide(slideIndex -= 1);
+      }
+      
+      function nextSlide() {
+        showSlide(slideIndex += 1);
+      }
+      
+//       setInterval(function() {
+//         nextSlide();
+//       }, 5000);
+    </script>
+	<script>
+  var slideIndex = 1;
+  var startX;
+  var endX;
+  var threshold = 50; // minimum distance to trigger a swipe
+  
+  function showSlide(n) {
+    var slides = document.getElementsByClassName("carousel-slide");
+    
+    if (n > slides.length) {
+      slideIndex = 1;
+    }
+    
+    if (n < 1) {
+      slideIndex = slides.length;
+    }
+    
+    for (var i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    
+    slides[slideIndex - 1].style.display = "block";
+  }
+  
+  function prevSlide() {
+    showSlide(slideIndex -= 1);
+  }
+  
+  function nextSlide() {
+    showSlide(slideIndex += 1);
+  }
+  
+  // detect touch start position
+  function touchStart(event) {
+    startX = event.touches[0].clientX;
+  }
+  
+  // detect touch end position and direction
+  function touchEnd(event) {
+    endX = event.changedTouches[0].clientX;
+    var deltaX = endX - startX;
+    
+    // check if swipe distance is greater than threshold
+    if (Math.abs(deltaX) > threshold) {
+      // swipe left
+      if (deltaX < 0) {
+        nextSlide();
+      }
+      // swipe right
+      else if (deltaX > 0) {
+        prevSlide();
+      }
+    }
+  }
+  
+  // add touch event listeners to the carousel container
+  var carouselContainer = document.getElementsByClassName("carousel-container")[0];
+  carouselContainer.addEventListener("touchstart", touchStart);
+  carouselContainer.addEventListener("touchend", touchEnd);
+</script>
+
+  </body>
+</html>
