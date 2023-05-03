@@ -78,10 +78,10 @@
 
 
             </div>
-      <div class="home-button">Home</div>
-      <div class="prev-button">&larr;</div>
-      <div class="next-button">&rarr;</div>
+      <div class="carousel-control left" onclick="prevSlide()">&#10094;</div>
+      <div class="carousel-control right" onclick="nextSlide()">&#10095;</div>
     </div>
+	<button class="home-button" onclick="location.href='/main.html'">Home</button>
     <script>
       $(document).ready(function() {
         var carousel = $(".carousel-items");
